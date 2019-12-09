@@ -20,9 +20,10 @@
             {Shoots 1 precice shot (tries to calculate where player will be)}
         3.2.5. Enemy death
         3.2.6. Score reward for each enemy kill
-        3.2.7. Sequence of all enemies.
+        3.2.7. Sequence of enemy spawning.
             {Based on time passed}
             {Need to track time elapsed from level start}
+        3.2.8. Enemy health
     3.2. Score
         {Legacy arcade game name input}
     3.2. Boss
@@ -30,6 +31,7 @@
             {???}
         3.2.2. Stage 2
             {???}
+        3.2.3. Health bar
     3.3. Enemy and player hitboxes
 4. Code menu 
     4.1. New game
