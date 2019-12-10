@@ -1,60 +1,19 @@
+// This file is required by the index.html file and will
+// be executed in the renderer process for that window.
+// No Node.js APIs are available in this process because
+// `nodeIntegration` is turned off. Use `preload.js` to
+// selectively enable features needed in the rendering
+// process.
 
-
-
-// const { drawPlayer, shootProjectiles, controlPlayer, stopControllingPlayer } = require('./player');
-// const { ctx, canvas, fps } = require('./globals');
-
-
-// const frame = () => {
-//     // 	clear canvas
-//     ctx.clearRect(0, 0, canvas.width, canvas.height);
-//     // 	move player
-//     drawPlayer();
-
-//     if (shootProjectiles.length != 0) {
-//         shootProjectiles.forEach((e) => {
-//             if (e.y > 0) {
-//                 ctx.save();
-//                 ctx.scale(0.1, 0.1);
-//                 ctx.translate(e.x, e.y);
-//                 ctx.rotate(Math.PI * 1.25);
-//                 ctx.fillStyle = '#aaa';
-//                 //#0a475c
-//                 ctx.fill(shootBlastBeam.shape);
-//                 ctx.restore();
-//                 e.y -= 200;
-//             } else {
-//                 shootProjectiles.splice(shootProjectiles.indexOf(e), 1);
-//             }
-
-//         });
-//     }
-// }
-
-
-
-// //animate
-// setInterval(frame, fps);
-
-// window.addEventListener('keydown', controlPlayer);
-// window.addEventListener('keyup', stopControllingPlayer);
-
-// const { upKey, rightKey, downKey, leftKey, shootKey, debug } = require('./controls');
 
 
 
-const canvas = document.getElementById('canvas');
+// const { upKey, rightKey, downKey, leftKey, shootKey, debug } = require('./controls');
+import { upKey, rightKey, downKey, leftKey, shootKey, debug } from './controls.js';
+import { canvas, ctx, fps } from './globals.js';
 
 
-const fps = Math.round(1000/30);
-const upKey = 73; 		// I
-const rightKey = 76; 	// L
-const downKey = 75; 	// K
-const leftKey = 74; 	// J
-const shootKey = 81;	// Q
-const debug = 68;			// D
 
-let ctx = canvas.getContext('2d');
 let player = {
 	shape: new Path2D('M512 43.3V15.5C512 7.1 505.2.3 496.8.3H468A258 258 0 00285 75.6L273 87.7l-82.8-7.5a75.9 75.9 0 00-38 6.3L38.6 72.2c-4.6-.5-9.3 1-12.6 4.4L4.5 98c-6 6-6 15.6 0 21.5l53.7 53.8-10 10c-6 6-6 15.6 0 21.6l32.2 32.2L69 248.7a15.2 15.2 0 00-4.5 10.7c-6.2 2.2-12 5.8-17 10.8-13 13-38.7 72.9-46.3 90.9a15.2 15.2 0 0019.9 20c18-7.7 78-33.4 91-46.4 4.9-5 8.5-10.8 10.7-17 3.9 0 7.8-1.5 10.7-4.5l11.5-11.4 64.5 64.5-11.4 11.4a15.2 15.2 0 00-4.5 10.8 45.5 45.5 0 00-17 10.8c-13 13-38.8 72.8-46.3 90.9a15.2 15.2 0 0019.9 19.9c18-7.6 77.9-33.3 90.9-46.3 5-5 8.5-10.8 10.7-17 4 0 7.8-1.5 10.8-4.5l11.4-11.5 32.7 32.7c6 6 15.6 6 21.5 0l10-10 53.9 53.7c6 6 15.5 6 21.5 0l21.5-21.5c3.3-3.3 5-8 4.3-12.6l-14.2-113.7a76 76 0 006.3-37.9L424 238l11.8-11.8A259 259 0 00512 43.3zm-324.6 67.2l57.6 5.2-38 38c-17-8-38-5-52 9l-53 53-21.6-21.5 70.6-70.6a45.5 45.5 0 0136.4-13.1zM79.7 151.9l-43-43 5.5-5.5 76.5 9.5-39 39zm10.8 161.3c-4.2 4-23.3 13.8-45.6 24.1 10.3-22.3 20-41.4 24-45.6a15.2 15.2 0 0121.6 21.5zm32.3-32.3l-21.5-21.5 75.2-75.3a15.2 15.2 0 0121.6 21.6l-75.3 75.2zm96.8 161.4c-4.2 4-23.3 13.8-45.6 24 10.3-22.2 20-41.4 24-45.5a15.2 15.2 0 1121.6 21.5zm32.2-32.3l-21.5-21.5 75.3-75.3a15.2 15.2 0 0121.5 21.5L251.8 410zm65.7 21.2l-22-21.9 53.1-53c14.1-14.2 17-35.1 9-52l38.3-38.4 5.3 58.4a45.5 45.5 0 01-13.1 36.4l-70.6 70.5zm85.3 43.8l-43-43 39-39 9.5 76.5-5.5 5.5zM336 282.8c-17-8-37.9-5.1-51.9 8.9l-53 53-21.6-21.4 53-53.1a15.2 15.2 0 00-21.4-21.5l-53.1 53-21.5-21.4 53-53.1c14.2-14.1 17-35 9-52 86.1-86 81-81.2 88.2-87.6l107 107c-6.5 7.2-1.6 2.1-87.7 88.2zm5-214c37-24.7 80.9-38 127-38h13.6v12.5c0 45-14 89.5-39.2 127L340.9 69z'),
 	x: 3000,

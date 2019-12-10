@@ -1,13 +1,8 @@
-const upKey = 73; 		// I
-const rightKey = 76; 	// L
-const downKey = 75; 	// K
-const leftKey = 74; 	// J
-const shootKey = 81;	// Q
+const upKey = 38; 		// Up
+const rightKey = 39; 	// Right
+const downKey = 40; 	// Down
+const leftKey = 37; 	// Left
+const shootKey = 16;	// Shift
 const debug = 68;		// D
 
-module.exports = { upkey, rightKey, downKey, leftKey, shootKey, debug };
-// exports.rightKey = rightKey;
-// exports.downKey = downKey;
-// exports.leftKey = leftKey;
-// exports.shootKey = shootKey;
-// exports.debug = debug;
+export { upKey, rightKey, downKey, leftKey, shootKey, debug }

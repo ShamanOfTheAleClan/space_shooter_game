@@ -1,23 +1,22 @@
 {
-  "name": "space-shooter",
+  "name": "space-shooter-game",
   "version": "1.0.0",
-  "description": "",
+  "description": "Arcade game on JS",
   "main": "main.js",
-  "dependencies": {},
-  "devDependencies": {
-    "electron": "^7.1.3"
-  },
   "scripts": {
-    "start": "electron --inspect=5858 index.html"
+    "start": "electron ."
   },
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/ShamanOfTheAleClan/space_shooter_game.git"
-  },
+  "repository": "https://github.com/ShamanOfTheAleClan/space_shooter_game.git",
+  "keywords": [
+    "Electron",
+    "quick",
+    "start",
+    "tutorial",
+    "demo"
+  ],
   "author": "ShamanOfTheAleClan",
-  "license": "ISC",
-  "bugs": {
-    "url": "https://github.com/ShamanOfTheAleClan/space_shooter_game/issues"
-  },
-  "homepage": "https://github.com/ShamanOfTheAleClan/space_shooter_game#readme"
+  "license": "",
+  "devDependencies": {
+    "electron": "^7.1.4"
+  }
 }
