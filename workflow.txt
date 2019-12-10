@@ -36,6 +36,8 @@
 4. Code menu 
     4.1. New game
     4.2. Highscores
+    4.3. Exit
+    4.4. Esc during gameplay pauses the game and invokes menu
 5. Code scoreboard
     5.1. You can enter only 3 letters for a name
     5.2. Sorts list by highest score
