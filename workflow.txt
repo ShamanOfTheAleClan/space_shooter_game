@@ -1,5 +1,5 @@
-1. Trasnfer code from codepen to github/VSC.
-2. Transform JS code to module-based structure.
+-- 1. Trasnfer code from codepen to github/VSC.
+-- 2. Transform JS code to module-based structure.
 3. Code gameplay part of the game
     3.0. Player death
         {insta-death}
