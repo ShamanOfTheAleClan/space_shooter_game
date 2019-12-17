@@ -6,7 +6,7 @@ body {
 canvas {
 	top: -9px;
   height: 100vh;
-  width: 100vh;
+  width: 120vh;
   position: relative;
   left: 50%;
   transform:translateX(-50%);
@@ -16,10 +16,10 @@ canvas {
 	z-index: -1;
 	position: absolute;
 	height: 100vh;
-	width: 100vh;
+	width: 120vh;
 	left: 50%;
 	transform: translateX(-50%);
-	background: center / contain url('./assets/space-background-loop-5.jpg')
+	background: center / cover url('./assets/space-background-loop-5.bmp')
 }
 .background.first {
 	top: 0;
