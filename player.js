@@ -1,22 +1,25 @@
 import { upKey, rightKey, downKey, leftKey, shootKey, debug } from './controls.js';
-import { ctx } from './globals.js';
+import { ctx, canvas } from './globals.js';
+import { enemies } from './enemies.js';
+import { mine } from './eventScriptLog.js';
 
 let moveUp = null;
 let moveDown = null;
 let moveRight = null;
 let moveLeft = null;
 let shoot = null;
-let shootProjectiles = [];
+let playerProjectiles = [];
 
 class PlayerProjectile {
-	constructor(){
-		this.x = player.x + 37;
-		this.y = player.y - 50;
+    constructor() {
+        this.x = player.x + 37;
+        this.y = player.y - 50;
         this.height = 42;
         this.width = 25;
         this.speed = 15;
-	}
-}   
+        this.dead = false;
+    }
+}
 
 
 let player = {
@@ -25,6 +28,7 @@ let player = {
     height: 75,
     width: 97,
     speed: 4,
+    dead: false,
 }
 
 
@@ -64,9 +68,9 @@ let controlPlayer = (e) => {
 
         case shootKey:
             if (shoot == null) {
-                shootProjectiles.push(new PlayerProjectile());
+                playerProjectiles.push(new PlayerProjectile());
                 shoot = setInterval(() => {
-                    shootProjectiles.push(new PlayerProjectile());
+                    playerProjectiles.push(new PlayerProjectile());
                 }, 175);
 
                 //     // TODO make it pulse while shooting
@@ -78,6 +82,8 @@ let controlPlayer = (e) => {
             break;
         case debug:
             console.log(player.x, player.y);
+            console.log('Enemies: ', enemies);
+            console.log('Mine: ', mine);
     }
 }
 
@@ -110,8 +116,6 @@ let stopControllingPlayer = (e) => {
     }
 }
 
-const collisionDetection = (projectile, target) => {
-    if ()
-}
 
-export { shootProjectiles, player, controlPlayer, stopControllingPlayer, PlayerProjectile }
+
+export { playerProjectiles, player, controlPlayer, stopControllingPlayer, PlayerProjectile }

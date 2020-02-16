@@ -11,12 +11,25 @@
 // const { upKey, rightKey, downKey, leftKey, shootKey, debug } = require('./controls');
 
 import { canvas, ctx, fps } from './globals.js';
-import { shootProjectiles, player, controlPlayer, stopControllingPlayer, PlayerProjectile } from './player.js';
+import {
+	playerProjectiles,
+	player,
+	controlPlayer,
+	stopControllingPlayer,
+	PlayerProjectile
+} from './player.js';
 import { playerSprite, playerProjectileSprite } from './sprites.js';
-import { enemies } from './eventScript.js';
+import { enemies } from './enemies.js';
+import './eventScriptLog.js';
 
 
-
+const checkCollisions = () => {
+	if (playerProjectiles.length > 0) {
+		enemies.forEach((enemy) => {
+			enemy.checkCollision();
+		})
+	}
+}
 
 const drawPlayer = () => {
 	// Wait for the sprite sheet to load
@@ -33,8 +46,8 @@ const drawPlayer = () => {
 
 
 const drawPlayerProjectiles = () => {
-	shootProjectiles.forEach((e, i) => {
-		if (e.y > 0) {
+	playerProjectiles.forEach((e, i) => {
+		if (e.y > 0 && e.dead === false) {
 			if (playerProjectileSprite) ctx.drawImage(playerProjectileSprite, e.x, e.y);
 
 			ctx.beginPath();
@@ -44,7 +57,7 @@ const drawPlayerProjectiles = () => {
 			ctx.stroke();
 			e.y -= e.speed;
 		} else {
-			shootProjectiles.splice(shootProjectiles[i], 1);
+			playerProjectiles.splice(playerProjectiles[i], 1);
 		}
 
 	});
@@ -53,15 +66,20 @@ const drawPlayerProjectiles = () => {
 
 // draw enemies
 const drawEnemies = () => {
-	enemies.forEach((enemy) => {
-	ctx.beginPath();
-	ctx.lineWidth = "1";
-	ctx.strokeStyle = "red";
-	ctx.rect(enemy.x, enemy.y, enemy.width, enemy.height);
-	ctx.stroke();
+	enemies.forEach((enemy, i) => {
+		if (!enemy.dead) {
+			ctx.beginPath();
+			ctx.lineWidth = "1";
+			ctx.strokeStyle = "red";
+			ctx.rect(enemy.x, enemy.y, enemy.width, enemy.height);
+			ctx.stroke();
+		} else {
+			enemies.splice(enemies[i], 1);
+		}
 	})
 
 }
+
 
 
 const frame = () => {
@@ -69,9 +87,10 @@ const frame = () => {
 	// console.log('frame')
 	ctx.clearRect(0, 0, canvas.width, canvas.height);
 	// 	move player
+	checkCollisions();
 	drawPlayer();
 	drawEnemies();
-	if (shootProjectiles.length != 0) {
+	if (playerProjectiles.length != 0) {
 		drawPlayerProjectiles();
 	}
 }
