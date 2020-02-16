@@ -13,6 +13,7 @@
 import { canvas, ctx, fps } from './globals.js';
 import { shootProjectiles, player, controlPlayer, stopControllingPlayer, PlayerProjectile } from './player.js';
 import { playerSprite, playerProjectileSprite } from './sprites.js';
+import { enemies } from './eventScript.js';
 
 
 
@@ -26,29 +27,42 @@ const drawPlayer = () => {
 	ctx.beginPath();
 	ctx.lineWidth = "1";
 	ctx.strokeStyle = "red";
-	ctx.rect(player.x, player.y, player.width, player.length);
+	ctx.rect(player.x, player.y, player.width, player.height);
 	ctx.stroke();
 }
 
 
 const drawPlayerProjectiles = () => {
-	shootProjectiles.forEach((e) => {
+	shootProjectiles.forEach((e, i) => {
 		if (e.y > 0) {
 			if (playerProjectileSprite) ctx.drawImage(playerProjectileSprite, e.x, e.y);
 
 			ctx.beginPath();
 			ctx.lineWidth = "1";
 			ctx.strokeStyle = "red";
-			ctx.rect(e.x, e.y, e.width, e.length);
+			ctx.rect(e.x, e.y, e.width, e.height);
 			ctx.stroke();
 			e.y -= e.speed;
 		} else {
-			shootProjectiles.splice(shootProjectiles.indexOf(e), 1);
+			shootProjectiles.splice(shootProjectiles[i], 1);
 		}
 
-	}
-	);
+	});
 }
+
+
+// draw enemies
+const drawEnemies = () => {
+	enemies.forEach((enemy) => {
+	ctx.beginPath();
+	ctx.lineWidth = "1";
+	ctx.strokeStyle = "red";
+	ctx.rect(enemy.x, enemy.y, enemy.width, enemy.height);
+	ctx.stroke();
+	})
+
+}
+
 
 const frame = () => {
 	// 	clear canvas
@@ -56,13 +70,14 @@ const frame = () => {
 	ctx.clearRect(0, 0, canvas.width, canvas.height);
 	// 	move player
 	drawPlayer();
+	drawEnemies();
 	if (shootProjectiles.length != 0) {
 		drawPlayerProjectiles();
 	}
 }
 
 //animate
-setInterval(frame, fps)
+setInterval(frame, fps);
 
 window.addEventListener('keydown', controlPlayer);
-window.addEventListener('keyup', stopControllingPlayer)
+window.addEventListener('keyup', stopControllingPlayer);

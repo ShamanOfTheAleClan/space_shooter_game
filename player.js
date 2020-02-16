@@ -12,9 +12,9 @@ class PlayerProjectile {
 	constructor(){
 		this.x = player.x + 37;
 		this.y = player.y - 50;
-        this.length = 42;
+        this.height = 42;
         this.width = 25;
-        this.speed = 30;
+        this.speed = 15;
 	}
 }   
 
@@ -22,7 +22,7 @@ class PlayerProjectile {
 let player = {
     x: 455,
     y: 690,
-    length: 75,
+    height: 75,
     width: 97,
     speed: 4,
 }
@@ -33,7 +33,7 @@ let controlPlayer = (e) => {
         case upKey:
             if (moveUp == null) {
                 moveUp = setInterval(() => {
-                    if (player.y > -50) player.y -= player.speed;
+                    if (player.y > 50) player.y -= player.speed;
                 }, 10)
             }
             break;
@@ -110,5 +110,8 @@ let stopControllingPlayer = (e) => {
     }
 }
 
+const collisionDetection = (projectile, target) => {
+    if ()
+}
 
 export { shootProjectiles, player, controlPlayer, stopControllingPlayer, PlayerProjectile }

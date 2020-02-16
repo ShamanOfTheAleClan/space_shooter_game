@@ -12,8 +12,8 @@ let playerSprite = null;
 playerSpriteImage.onload = () => {
 	Promise.all([
 		// Cut out two sprites from the sprite sheet
-		createImageBitmap(playerSpriteImage, 0, 0, 390, 300),
-	]).then(function (sprites) {
+		createImageBitmap(playerSpriteImage, 0, 0, 97, 75),
+	]).then( (sprites) => {
 		// Draw each sprite onto the canvas
 		playerSprite = sprites[0];
 
