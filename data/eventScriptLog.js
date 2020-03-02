@@ -1,4 +1,4 @@
-import { Mine, enemies } from './enemies.js';
+import { Mine, enemies } from './enemies/enemies.js';
 
 // This part is for testing
 let mine = new Mine();

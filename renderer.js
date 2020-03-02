@@ -10,17 +10,12 @@
 
 // const { upKey, rightKey, downKey, leftKey, shootKey, debug } = require('./controls');
 
-import { canvas, ctx, fps } from './globals.js';
-import {
-	playerProjectiles,
-	player,
-	controlPlayer,
-	stopControllingPlayer,
-	PlayerProjectile
-} from './player.js';
-import { playerSprite, playerProjectileSprite } from './sprites.js';
-import { enemies } from './enemies.js';
-import './eventScriptLog.js';
+import { canvas, ctx, fps } from './data/globals.js';
+import { playerProjectiles, player } from './data/player.js';
+import { controlPlayer, stopControllingPlayer } from './data/controls.js';
+import { playerSprite, playerProjectileSprite } from './data/sprites.js';
+import { enemies } from './data/enemies/enemies.js';
+import './data/eventScriptLog.js';
 
 
 const checkCollisions = () => {
@@ -55,7 +50,7 @@ const drawPlayerProjectiles = () => {
 			ctx.strokeStyle = "red";
 			ctx.rect(e.x, e.y, e.width, e.height);
 			ctx.stroke();
-			e.y -= e.speed;
+			e.moveProjectile();
 		} else {
 			playerProjectiles.splice(playerProjectiles[i], 1);
 		}

@@ -1,35 +1,19 @@
-import { upKey, rightKey, downKey, leftKey, shootKey, debug } from './controls.js';
-import { ctx, canvas } from './globals.js';
-import { enemies } from './enemies.js';
+import { enemies } from './enemies/enemies.js';
 import { mine } from './eventScriptLog.js';
+import { player, playerProjectiles, PlayerProjectile } from './player.js';
+
+const upKey = 38; 		// Up
+const rightKey = 39; 	// Right
+const downKey = 40; 	// Down
+const leftKey = 37; 	// Left
+const shootKey = 16;	// left Shift
+const debug = 68;		// D
 
 let moveUp = null;
 let moveDown = null;
 let moveRight = null;
 let moveLeft = null;
 let shoot = null;
-let playerProjectiles = [];
-
-class PlayerProjectile {
-    constructor() {
-        this.x = player.x + 37;
-        this.y = player.y - 50;
-        this.height = 42;
-        this.width = 25;
-        this.speed = 15;
-        this.dead = false;
-    }
-}
-
-
-let player = {
-    x: 455,
-    y: 690,
-    height: 75,
-    width: 97,
-    speed: 4,
-    dead: false,
-}
 
 
 let controlPlayer = (e) => {
@@ -116,6 +100,4 @@ let stopControllingPlayer = (e) => {
     }
 }
 
-
-
-export { playerProjectiles, player, controlPlayer, stopControllingPlayer, PlayerProjectile }
+export { upKey, rightKey, downKey, leftKey, shootKey, debug, controlPlayer, stopControllingPlayer }
