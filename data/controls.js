@@ -1,6 +1,7 @@
-import { enemies } from './enemies/enemies.js';
-import { mine } from './eventScriptLog.js';
+import { enemies, enemyProjectiles } from './enemies/enemies.js';
 import { player, playerProjectiles, PlayerProjectile } from './player.js';
+import { canvas } from './globals.js';
+
 
 const upKey = 38; 		// Up
 const rightKey = 39; 	// Right
@@ -67,7 +68,9 @@ let controlPlayer = (e) => {
         case debug:
             console.log(player.x, player.y);
             console.log('Enemies: ', enemies);
-            console.log('Mine: ', mine);
+            console.log('Enemy projectiles', enemyProjectiles);
+            console.log('Player ', player);
+            console.log('canvas ', canvas);
     }
 }
 

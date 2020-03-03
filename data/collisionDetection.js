@@ -4,7 +4,8 @@ const collisionDetection = (projectile, target) => {
     const tx1 = target.x;
     const tx2 = target.x + target.width;
 
-    if (projectile.y <= target.y + target.height) {
+    if (projectile.y <= target.y + target.height
+    && projectile.y >= target.y) {
         if (
             // if projectile's left corner is within target
             (px1 >= tx1 && px1 <= tx2)
