@@ -5,10 +5,10 @@ class PlayerProjectile {
         this.x = player.x + 37;
         this.y = player.y - 50;
         this.height = 42;
-        this.width = 25;
+        this.width = 24;
         this.speed = 15;
         this.dead = false;
-        this.trajectory = {x:0, y:-1}
+        this.trajectory = { x:0, y:-1 }
     }
     moveProjectile() {
         this.x = this.x + this.speed * this.trajectory.x;
@@ -21,7 +21,7 @@ let player = {
     x: 455,
     y: 690,
     height: 75,
-    width: 97,
+    width: 96,
     speed: 4,
     dead: false,
 }
