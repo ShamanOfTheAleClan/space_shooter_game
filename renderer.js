@@ -18,17 +18,31 @@ import { enemies, enemyProjectiles } from './data/enemies/enemies.js';
 import './data/scripts/eventScriptLog.js';
 
 
+
+
+
 const checkCollisions = () => {
 	if (playerProjectiles.length > 0) {
-		enemies.forEach((enemy) => {
-			enemy.checkCollision();
-		})
+		for (let i = 0; i < enemies.length; i++) {
+			enemies[i].checkCollision();
+		}
 	}
 	if (enemyProjectiles.length > 0) {
-		enemyProjectiles.forEach((projectile) => {
-			projectile.checkCollision();
-		})
+		for (let i = 0; i < enemyProjectiles.length; i++) {
+			enemyProjectiles[i].checkCollision()
+		}
 	}
+	// const myWorker = new Worker('collisionDetection.js');
+	// if (playerProjectiles.length > 0) {
+	// 	for (let i = 0; i < enemies.length; i++) {
+	// 		myWorker.postMessage(enemies[i]);
+	// 	}
+	// }
+	// if (enemyProjectiles.length > 0) {
+	// 	for (let i = 0; i < enemyProjectiles.length; i++) {
+	// 		myWorker.postMessage(enemyProjectiles[i]);
+	// 	}
+	// }
 }
 
 const collectDead = () => {
@@ -41,19 +55,19 @@ const drawPlayer = () => {
 	// Load the sprite sheet from an image file
 	if (!player.dead) {
 		if (playerSprite) ctx.drawImage(playerSprite, player.x, player.y);
-
-		ctx.beginPath();
-		ctx.lineWidth = "1";
-		ctx.strokeStyle = "red";
-		ctx.rect(player.x, player.y, player.width, player.height);
-		ctx.stroke();
+		// ctx.beginPath();
+		// ctx.lineWidth = "1";
+		// ctx.strokeStyle = "red";
+		// ctx.rect(player.x, player.y, player.width, player.height);
+		// ctx.stroke();
 	}
 }
 
 
 const drawPlayerProjectiles = () => {
 	// optimise without using for cycle
-	playerProjectiles.forEach((e) => {
+	for (let i = 0; i < playerProjectiles.length; i++) {
+		let e = playerProjectiles[i]
 		if (e.y > 0 && !e.dead) {
 			if (playerProjectileSprite) ctx.drawImage(playerProjectileSprite, e.x, e.y);
 			e.moveProjectile();
@@ -62,24 +76,25 @@ const drawPlayerProjectiles = () => {
 			// ctx.strokeStyle = "red";
 			// ctx.rect(e.x, e.y, e.width, e.height);
 			// ctx.stroke();
-			
+
 		} else {
 			playerProjectiles.splice(playerProjectiles.indexOf(e), 1);
 		}
 
-	});
+	}
+
 }
 
 // draw enemies
 const drawEnemies = () => {
-	enemies.forEach((enemy) => {
-		if (!enemy.dead) {
-			switch (enemy.sprite) {
+	for (let i = 0; i < enemies.length; i++) {
+		if (!enemies[i].dead) {
+			switch (enemies[i].sprite) {
 				case 'mine':
-					if (mineSprite) ctx.drawImage(mineSprite, enemy.x, enemy.y);
+					if (mineSprite) ctx.drawImage(mineSprite, enemies[i].x, enemies[i].y);
 					break;
 			}
-			
+
 			// ctx.beginPath();
 			// ctx.lineWidth = "1";
 			// ctx.strokeStyle = "red";
@@ -88,31 +103,35 @@ const drawEnemies = () => {
 		} else {
 			enemies.splice(enemies.indexOf(enemy), 1);
 		}
-	})
+	}
+
 
 }
 
 const drawEnemyProjectiles = () => {
-	enemyProjectiles.forEach((projectile) => {
-		if (!projectile.dead) {
-			projectile.move();
-			if (mineProjectileSprite) ctx.drawImage(mineProjectileSprite, projectile.x, projectile.y);
+	for (let i = 0; i < enemyProjectiles.length; i++) {
+		if (!enemyProjectiles[i].dead) {
+			enemyProjectiles[i].move();
+			if (mineProjectileSprite) ctx.drawImage(mineProjectileSprite, enemyProjectiles[i].x, enemyProjectiles[i].y);
 			// ctx.beginPath();
 			// ctx.lineWidth = "1";
 			// ctx.strokeStyle = "red";
 			// ctx.rect(projectile.x, projectile.y, projectile.width, projectile.height);
 			// ctx.stroke();
-			
+
 		} else {
-			enemyProjectiles.splice(enemyProjectiles.indexOf(projectile), 1);
+			enemyProjectiles.splice(enemyProjectiles.indexOf(enemyProjectiles[i]), 1);
 		}
+
+	}
+	enemyProjectiles.forEach((projectile) => {
+
 	})
 }
 
 
 const frame = () => {
 	ctx.clearRect(0, 0, canvas.width, canvas.height);
-	// 	move player
 	drawPlayer();
 	drawEnemies();
 	if (playerProjectiles.length != 0) {
@@ -122,10 +141,10 @@ const frame = () => {
 		drawEnemyProjectiles();
 	}
 	checkCollisions();
+	window.requestAnimationFrame(frame)
 }
+window.requestAnimationFrame(frame)
 
-//animate
-setInterval(frame, fps);
 
 window.addEventListener('keydown', controlPlayer);
 window.addEventListener('keyup', stopControllingPlayer);

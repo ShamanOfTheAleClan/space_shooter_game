@@ -1,0 +1,39 @@
+[
+   {
+      "timestamp": "1970-01-01T00:00:00.000Z"
+   },
+   {
+      "timestamp": "1970-01-01T00:00:02.000Z",
+      "action": "move",
+      "parameters": {
+         "from": {
+            "x": "455",
+            "y": "100"
+         },
+         "to": {
+            "x": "500",
+            "y": "150"
+         },
+         "cubicBezier": "linear",
+         "duration": "3",
+         "trajectory": "linear"
+      }
+   },
+   {
+      "timestamp": "1970-01-01T00:00:06.000Z",
+      "action": "move",
+      "parameters": {
+         "from": {
+            "x": "500",
+            "y": "150"
+         },
+         "to": {
+            "x": "300",
+            "y": "200"
+         },
+         "cubicBezier": "linear",
+         "duration": "3",
+         "trajectory": "linear"
+      }
+   }
+]

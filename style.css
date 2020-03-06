@@ -2,10 +2,11 @@ body {
 	background: #1d2229;
 	overflow: hidden;
 	background-color: #000;
+	margin: 0;
 }
 
 canvas {
-	top: -9px;
+	top: -1px;
 	height: 100vh;
 	width: 133vh;
 	position: relative;
@@ -24,6 +25,8 @@ canvas {
 	background: center / cover no-repeat url('./assets/space-background-loop-5.png');
 	image-rendering: pixelated;
 }
+
+/* make three level background movement */
 
 .background.first {
 	top: 0;

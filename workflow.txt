@@ -3,8 +3,8 @@
 3. Code gameplay part of the game
     3.0. Player death
         {insta-death}
-        3.0.1. Player and enemy collision detection
-        3.0.2. Player and enemy projectile collission detection
+        -- 3.0.1. Player and enemy collision detection
+        -- 3.0.2. Player and enemy projectile collission detection
     3.1. Enemies
         3.1.0. Create tool to easily set enemy movement path
         3.1.1. Swarm
@@ -13,17 +13,17 @@
             {Never appears alone}
         3.1.2. Worm
             {Big, flies through map}
-        3.2.3. Mine
-            {Balls that shoots 4 shots diagonically (2 alternating direction variations)}
+            {Made up from several chunks, which can indepedently be destroyed}
+        -- 3.2.3. Mine
+            {Balls that shoot 4 shots diagonally (2 alternating direction variations)}
         3.2.4. Striker
             {Follows player's movement}
             {Shoots 1 precice shot (tries to calculate where player will be)}
-        3.2.5. Enemy death
+        -- 3.2.5. Enemy death
         3.2.6. Score reward for each enemy kill
         3.2.7. Sequence of enemy spawning.
-            {Based on time passed}
-            {Need to track time elapsed from level start}
-        3.2.8. Enemy health
+            {function, made from bunch of setTimeouts}
+        -- 3.2.8. Enemy health
     3.2. Score
         {Legacy arcade game name input}
     3.2. Boss
@@ -32,7 +32,7 @@
         3.2.2. Stage 2
             {???}
         3.2.3. Health bar
-    3.3. Enemy and player hitboxes
+    -- 3.3. Enemy and player hitboxes
 4. Code menu 
     4.1. New game
     4.2. Highscores
@@ -41,4 +41,4 @@
 5. Code scoreboard
     5.1. You can enter only 3 letters for a name
     5.2. Sorts list by highest score
-6. Implement electron
+6. -- Implement electron
